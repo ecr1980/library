@@ -1,3 +1,28 @@
+class Book {
+
+  title;
+  author;
+  pageCount;
+  haveRead;
+
+  constructor(title, author, pageCount, haveRead) {
+    this.title = title
+    this.author = author
+    this.pageCount = pageCount
+    this.haveRead = haveRead
+  }
+
+  bookInfo() {
+    let readFiller = "has been"
+    if (this.haveRead == false) {
+      readFiller = "not yet"
+    }
+    let info = (`${this.title}, by ${this.author}, ${this.pageCount} pages, ${readFiller} read.`)
+    return info
+  }
+}
+
+
 let firstBook = new Book("Lord of the Pings", "J. R. R. Terminal", 35, true)
 let secondBook = new Book("A Tale of Three Cities", "Duck Chickens", 942, true)
 let thirdBook = new Book("Huckleberry Fish", "Marty Twine", 214, false)
@@ -31,21 +56,7 @@ function addIfRead(book, readCell){
   readCell.appendChild(cellText)
 }
 
-function Book(title, author, pageCount, haveRead) {
-  this.title = title
-  this.author = author
-  this.pageCount = pageCount
-  this.haveRead = haveRead
 
-  this.bookInfo = function() {
-    let readFiller = "has been"
-    if (this.haveRead == false) {
-      readFiller = "not yet"
-    }
-    let info = (`${this.title}, by ${this.author}, ${this.pageCount} pages, ${readFiller} read.`)
-    return info
-  }
-}
 
 function clearForm() {
   document.getElementById('title').value = ""
@@ -66,7 +77,7 @@ function createNewBook(){
 
   const newBook = new Book(newTitle, newAuthor, newPageCount, wasRead)
   bookList.push(newBook)
-  addBookRow(bookList.length - 1)
+  displayBooks()
   clearForm()
   toggleShowForm()
 }
@@ -108,16 +119,19 @@ function addBookRow (i) {
   removeBookCell.appendChild(removeButton)
 }
 
-function displayBooks (bookTableID) {
+function displayBooks () {
+  tableID.innerHTML = ""
   for(let i = 0; i < bookList.length; i++) {
-    addBookRow(i, bookTableID)
+    addBookRow(i)
   }
 }
 
 function removeBook(i) {
-  tableID.deleteRow(i+1)
+  tableID.deleteRow(i)
   bookList.splice(i, 1)
+  displayBooks()
 }
+
 function toggleRead(book, readCell){
   if (book.haveRead == true) {
     book.haveRead = false
