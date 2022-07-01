@@ -1,0 +1,29 @@
+<style>
+  body {
+    background-color: black;
+    color: white;
+  }
+  
+</style>
+<script src="script.js" defer></script>
+
+<h1>Books!</h1>
+<button id="show-form">Add a book?</button>
+<div id="book-form" hidden ="">
+  <div>Title</div>
+  <input type="text" id="title" name="title"><br>
+  <div>Author</div>
+  <input type="text" id="author" name="author"><br>
+  <div>Numbor of Pages</div>
+  <input type="number" id="pages" name="pages"><br>
+  <div>Have Read? <input type="checkbox" id="read" name="read" value="yes"><br> </div>  
+  <button id="book-submit">Add Book!</button>
+</div>
+<table id="book-table">
+  <tr>
+    <th><em>Title</em></th>
+    <th><em>Author</em></th>
+    <th><em>Pages</em></th>
+    <th><em>Read</em></th>
+  </tr>
+</table>
